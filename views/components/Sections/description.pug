@@ -1,0 +1,22 @@
+include ../../partials/title
+
+section.description(role="region" aria-labelledby="description__title")
+  +titleBlock({ number: '01', title: 'Presentation' })
+  h2.visually__hidden#description__title Presentation
+
+  .description__wrapper 
+    .description__main__content
+      .description__image__wrapper 
+        .image__wrapper 
+          #cAsciiImage
+      
+      .description__text 
+        .description__text__wrapper 
+          p.description__paragraph__text.glitched(data-text="Developpeur — Sensible au design, a la typographie, a l’animation, a l’art, aux micros interactions et au code —")
+          br
+          p.description__paragraph__text.glitched(data-text="Createur d’experiences numeriques esthetiques totalement personnalisables — codees avec JavaScript, GSAP, WebGL et les shaders —")
+          br
+          p.description__paragraph__text.glitched(data-text="Actuellement — Disponible pour rejoindre un studio de creation digitale ou pour collaborer en tant que freelance, aux cotes de designers, developpeurs creatifs, motion designers —")
+          br
+          p.description__paragraph__text.glitched(data-text="Telechargez — Le contenu de ce curriculum vitae depuis la derniere section —")
+            

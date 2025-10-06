@@ -1,0 +1,112 @@
+doctype html
+html(lang="fr")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+
+    link(rel="icon" type="image/x-icon" href="/favicon.ico")
+    link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
+    link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
+    link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
+
+    title Victor Greiveldinger - Développeur
+
+    meta(name="description", content="Portfolio professionnel de Victor Greiveldinger, développeur web spécialisé en création de sites modernes et accessibles.")
+    meta(name="keywords", content="Victor Greiveldinger, développeur web, portfolio, HTML, CSS, JavaScript, WebGL, Gsap, accessibilité web, créatif")
+    meta(name="author", content="Victor Greiveldinger")
+
+    style.
+      .preloader {
+        position: fixed;
+        top: 40%;
+        left: 0;
+        transform: translate(0%, -40%);
+
+        width: 100%;
+        height: 100%;
+
+        background-color: rgb(12, 12, 12);
+
+        z-index: 99999;
+      }
+
+      .preloader__wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        
+        width: 100%;
+        height: 100%;
+      }
+
+      .preloader__mobile {
+        display: none;
+      }
+
+      .progress__shadow__line {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -55%);
+        
+        height: 1px;
+        width: 50%;
+
+        background: #f5f5b85a;
+      }
+
+      .progress__line {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -55%) scaleX(0);
+        transform-origin: left;
+
+        height: 1px;
+        width: 50%;
+
+        background: #f5f5b8;
+      }
+
+      @media (max-width: 621px) {
+        .preloader__text__wrapper {
+          font-size: 0.6em;
+        }
+
+        .preloader__mobile {
+          display: inline-flex;
+          font-size: smaller;
+          margin-top: 1em;
+        }
+      }
+
+    link(rel="stylesheet", href="main.css")
+
+  body
+    include ./components/Sections/preloader
+    
+    include ./components/Globals/background
+    include ./components/Globals/header
+    include ./components/Globals/cursor
+    include ./components/Globals/navigation
+    include ./components/Globals/progress
+
+    include ./components/Sections/hero_rectangle
+    include ./components/Sections/hero
+    include ./partials/whitespace
+    include ./components/Sections/description
+    include ./partials/whitespace
+    include ./components/Sections/formation
+    include ./partials/whitespace
+    include ./partials/whitespace
+    include ./components/Sections/experience
+    include ./partials/whitespace
+    include ./partials/whitespace
+    include ./components/Sections/competence
+    include ./partials/whitespace
+    include ./components/Sections/contact
+
+    script(type="module", src="critical.js")
+    script(src="main.js")

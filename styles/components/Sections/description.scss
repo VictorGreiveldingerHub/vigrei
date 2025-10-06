@@ -1,0 +1,40 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.description__wrapper {
+  height: 100%;
+  width: calc(100% - (var.$size-m * 2));
+
+  margin: auto;
+}
+
+.description__main__content {
+  display: flex;
+  flex-direction: column;
+  gap: var.$size-l;
+  width: 100%;
+  height: 100%;
+}
+
+.description__image__wrapper {
+  flex: 3;
+  max-height: 50vh;
+  width: 100%;
+}
+
+.image__wrapper {
+  position: relative;
+  overflow: hidden;
+
+  height: 100%;
+  width: 100%;
+
+  & #cAsciiImage {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.description__text {
+  flex: 1;
+}

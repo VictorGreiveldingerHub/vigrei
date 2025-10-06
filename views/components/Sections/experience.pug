@@ -1,0 +1,52 @@
+include ../../partials/card
+include ../../partials/title
+
+section.experience
+
+  +titleBlock({ number: '03', title: 'Experiences' })
+
+  .experience__wrapper
+
+    +Card({
+      index: 0,
+      number: '01',
+      wrapperClass: 'experience__card',
+      title: "Developpeur front",
+      date: '2020 - 2021',
+      functions: ["Developpement d'un site en React.", "Conception d'un cahier des charges.", "Developpeur front."],
+      link: 'https://oclock.io/',
+      school: "O'clock"
+    })
+
+    +Card({
+      index: 1,
+      number: '02',
+      wrapperClass: 'experience__card',
+      title: "Developpeur",
+      date: '2021 - 2022',
+      functions: ["Refonte de l'intranet.", "Gestion d'un cahier des charges.", "Développement front d'une partie de l'intranet en respectant les maquettes."],
+      link: 'https://www.defense.gouv.fr/sante/nos-missions/soutien-medical/hopitaux-militaires/hria-legouest-metz-57',
+      school: "HRIA Legouest"
+    })
+    
+    +Card({
+      index: 2,
+      number: '03',
+      wrapperClass: 'experience__card',
+      title: "Développeur",
+      date: '2022 - 2024',
+      functions: ["Développement de fonctionnalités front-end et back-end (C#, Vue, Angular).", "Création de rapports SSRS.", "Réalisation de requêtes SQL plus ou moins complexes (calculs côté serveur)."],
+      link: 'https://www.cmem.fr/#/home',
+      school: "CMEM"
+    })
+
+    +Card({
+      index: 3,
+      number: '04',
+      wrapperClass: 'experience__card',
+      title: "Developpeur",
+      date: '2025',
+      functions: ["Design de mon portfolio.", "Développement de ce portfolio (Javascript, Three, Gsap, shaders).", "Mise en production."],
+      link: 'https://www.vigrei.dev',
+      school: "vigrei.dev"
+    })

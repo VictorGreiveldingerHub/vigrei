@@ -1,0 +1,27 @@
+// Couleurs
+$deepblue: #003e83;
+$paleyellow: #f5f5b8;
+$yelloworange: #ff9500;
+
+// Taille
+$defaultSize: calc(0.1 * 10vmin);
+$size-xs: calc($defaultSize * 0.8);
+$size-s: $defaultSize;
+$size-m: calc($defaultSize * 1.618);
+$size-l: calc($defaultSize * 3.236);
+$size-xl: calc($defaultSize * 6.472);
+$size-title: calc($defaultSize * 10);
+$size-xxxl: calc($defaultSize * 15);
+
+// Autres
+$ease: cubic-bezier(0.77, 0, 0.175, 1);
+
+$blue-border: 1px solid color-mix(in srgb, $deepblue 30%, transparent);
+$paleyellow-border: 1px solid color-mix(in srgb, $paleyellow 30%, transparent);
+
+// Variable global css pour le js
+:root {
+  --size-l: #{$size-l};
+  --deepblue: #{$deepblue};
+  --yelloworange: #{$yelloworange};
+}

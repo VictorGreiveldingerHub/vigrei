@@ -1,0 +1,47 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.header__wrapper {
+  position: absolute;
+  top: 0;
+
+  display: flex;
+
+  width: 100%;
+}
+
+.header__logo__wrapper,
+.header__copyright__wrapper,
+.header__location,
+.header__socials__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var.$size-s;
+  flex: 1;
+  margin: var.$size-l var.$size-m;
+}
+
+.header__socials__wrapper {
+  align-items: end;
+
+  & svg {
+    fill: var.$yelloworange;
+  }
+}
+
+@include mixins.mobile {
+  .header__wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__socials__wrapper {
+    align-items: flex-start;
+  }
+}

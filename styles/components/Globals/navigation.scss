@@ -1,0 +1,47 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.navigation {
+  position: fixed;
+  top: 50%;
+  transform: translate(0%, -50%);
+  right: var.$size-m;
+
+  font-size: var.$size-s;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navigation__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: var.$size-s;
+  height: fit-content;
+}
+
+.navigation__item {
+  display: flex;
+  gap: var.$size-m;
+  align-items: center;
+
+  color: color-mix(in srgb, var.$paleyellow 50%, transparent);
+
+  &:hover {
+    color: var.$paleyellow;
+
+    transition: color 0.5s var.$ease;
+  }
+
+  &.active {
+    color: var.$paleyellow;
+  }
+}
+
+@include mixins.mobile {
+  .navigation {
+    display: none;
+  }
+}

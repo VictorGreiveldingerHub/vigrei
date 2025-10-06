@@ -1,0 +1,45 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.hero {
+  justify-content: end;
+}
+
+.hero__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: var.$size-l var.$size-m;
+}
+
+.hero__subtitles {
+  display: flex;
+  flex-direction: column;
+  gap: var.$size-s;
+}
+
+.hero__subtitle__main {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: var.$size-l;
+}
+
+.hero__subtitle__second {
+  font-style: italic;
+  font-size: var.$size-m;
+}
+
+@include mixins.mobile {
+  .hero {
+    justify-content: end;
+    align-items: end;
+  }
+
+  .hero__wrapper {
+    flex-direction: column;
+    gap: var.$size-l;
+  }
+
+  .hero__subtitles {
+    align-items: end;
+  }
+}

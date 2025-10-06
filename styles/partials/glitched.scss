@@ -1,0 +1,47 @@
+@use "../base/base.scss" as var;
+
+.glitched {
+  opacity: 0;
+}
+
+.glitch__char {
+  display: inline-flex;
+  position: relative;
+
+  text-align: center;
+
+  visibility: hidden;
+}
+
+.glitch__char span {
+  display: inline-flex;
+}
+
+.real__char {
+  min-width: var.$size-xs;
+
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.glitch__char .fake__char {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  min-width: 100%;
+
+  text-align: center;
+
+  color: var.$paleyellow;
+  background-color: rgb(12, 12, 12);
+}
+
+.glitch__char .real__char {
+  opacity: 0;
+  overflow: hidden;
+}
+
+.real__char .space__char {
+  display: inline-flex;
+}

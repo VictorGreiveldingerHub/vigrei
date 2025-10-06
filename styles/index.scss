@@ -1,0 +1,26 @@
+@use "./base/reset";
+@use "./base/fonts";
+@use "./base/base.scss";
+
+/* Partials */
+@use "./partials/card.scss";
+@use "./partials/glitched.scss";
+@use "./partials/whitespace.scss";
+@use "./partials/socialLink.scss";
+@use "./partials/sectionTitle.scss";
+
+/* Globals */
+@use "./components/Globals/background.scss";
+@use "./components/Globals/cursor.scss";
+@use "./components/Globals/header.scss";
+@use "./components/Globals/navigation.scss";
+@use "./components/Globals/progress.scss";
+
+/* Sections */
+@use "./components/Sections/competence";
+@use "./components/Sections/contact";
+@use "./components/Sections/description";
+@use "./components/Sections/experience";
+@use "./components/Sections/formation.scss";
+@use "./components/Sections/hero";
+@use "./components/Sections/asciiHero";

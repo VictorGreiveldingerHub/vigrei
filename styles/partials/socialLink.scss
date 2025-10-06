@@ -1,0 +1,51 @@
+@use "../base/base.scss" as var;
+@use "../utils/mixins";
+
+.social__link {
+  display: flex;
+  gap: var.$size-s;
+  align-items: center;
+  flex: 1;
+  color: var.$paleyellow;
+
+  z-index: 1000;
+}
+
+.link__arrow {
+  position: relative;
+  display: inline-block;
+
+  width: var.$size-s;
+  height: var.$size-s;
+
+  overflow: hidden;
+}
+
+.arrow {
+  position: absolute;
+  top: -1px;
+  left: 0;
+
+  // Ajouter une animation d'arriver par la suite
+  // opacity: 0;
+}
+
+.arrow__hover {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  transform: translate3d(-50%, 50%, 0);
+
+  opacity: 0;
+}
+
+@include mixins.mobile {
+  .social__link {
+    color: var.$paleyellow;
+  }
+
+  .link__arrow {
+    width: var.$size-m;
+    height: var.$size-m;
+  }
+}

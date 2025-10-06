@@ -1,0 +1,17 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.progress {
+  position: fixed;
+  bottom: var.$size-l;
+  right: var.$size-m;
+
+  font-size: var.$size-l;
+  font-weight: bold;
+}
+
+@include mixins.mobile {
+  .progress {
+    display: none;
+  }
+}

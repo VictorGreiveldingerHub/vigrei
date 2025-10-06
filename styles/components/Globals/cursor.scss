@@ -1,0 +1,24 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.cursor {
+  width: var.$size-l;
+  height: var.$size-l;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+
+  background: white;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+}
+
+@include mixins.mobile {
+  .cursor {
+    display: none;
+  }
+}

@@ -1,0 +1,28 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.hero__rectangle {
+  position: absolute;
+
+  top: 40%;
+  left: 0;
+  height: 60vh;
+  transform: translate(0%, -40%);
+  width: 80%;
+
+  @include mixins.mobile {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    height: 100svh;
+
+    width: 50%;
+    transform: translate(0, 0);
+  }
+}
+
+#cAsciiHero {
+  height: 100%;
+  width: 100%;
+}

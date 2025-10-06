@@ -1,0 +1,44 @@
+include ../../partials/card
+include ../../partials/title
+
+section.formation
+
+  +titleBlock({ number: '02', title: 'Formations' })
+  
+  .formation__wrapper
+  
+    +Card({
+      index: 0,
+      number: '01',
+      wrapperClass: 'formation__card',
+      title: 'Developpeur web et web mobile',
+      date: '2020 - 2021',
+      level: 'BAC + 2 - Titre RNCP Niveau 4',
+      skills: ['HTML5 - CSS3', 'Javascript', 'React', 'Node', 'SQL', 'Express', 'Git', 'Github'],
+      link: 'https://oclock.io/nos-formations?adgroupname=&keyword=o%27clock&utm_source=google&utm_medium=cpc&utm_campaign=SEA+-+BRAND+-+O%27clock&utm_term=o%27clock&hsa_acc=9353883648&hsa_cam=21076823994&hsa_grp=159247594466&hsa_ad=730179203969&hsa_src=g&hsa_tgt=kwd-299300012806&hsa_kw=o%27clock&hsa_mt=e&hsa_net=adwords&hsa_ver=3&gad_source=1&gclid=Cj0KCQjw_JzABhC2ARIsAPe3ynrOrCMuU8itjE79m6AEpeFA-r1OfcsbZao3u-8wWsE_5oG5LGDYWrYaAqH7EALw_wcB',
+      school: "O'clock"
+    })
+    
+    +Card({
+      index: 1,
+      number: '02',
+      wrapperClass: 'formation__card',
+      title: 'Responsable de projets informatiques',
+      date: '2021 - 2022',
+      level: 'BAC + 3 - Titre RNCP Niveau 6',
+      skills: ['Gestion de projet', "Conception cahier des charges", 'C#', 'PHP', 'Laravel'],
+      link: 'https://www.mewo.fr/metiers/informatique/responsable-projets-informatiques/',
+      school: "MEWO"
+    })
+    
+    +Card({
+      index: 2,
+      number: '03',
+      wrapperClass: 'formation__card',
+      title: "Expert en systemes d'information",
+      date: '2022 - 2024',
+      level: 'BAC + 5 - Titre RNCP Niveau 7',
+      skills: ["Angular", "Vue", "SQL Server", "SSRS", 'ElasticSearch', 'PowerBI', 'Entity Framework', 'Python'],
+      link: 'https://www.mewo.fr/formations/informatique/developpeur-web-et-mobile/',
+      school: "MEWO"
+    })

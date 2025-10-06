@@ -1,0 +1,36 @@
+@use "../base/base.scss" as var;
+@use "../utils/mixins";
+
+.title__wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: var.$size-xl;
+  font-weight: bold;
+  font-size: var.$size-l;
+  text-transform: uppercase;
+  margin: var.$size-l var.$size-m;
+}
+
+.title__number {
+  font-size: var.$size-m;
+}
+
+.visually__hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+@include mixins.mobile {
+  .title__wrapper {
+    font-size: var.$size-xl;
+  }
+  .title__number {
+    font-size: var.$size-l;
+  }
+}

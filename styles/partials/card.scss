@@ -1,0 +1,157 @@
+@use "../base/base.scss" as var;
+@use "../utils/mixins";
+
+.cards__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var.$size-s;
+
+  height: fit-content;
+}
+
+.card {
+  width: 70%;
+  height: 40svh;
+  padding: var.$size-l;
+
+  color: var.$deepblue;
+  background-color: var.$paleyellow;
+
+  border: var.$blue-border;
+  border-radius: 10px;
+  box-shadow: color-mix(in srgb, var.$deepblue 30%, transparent) 0px 3px 8px;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: var.$blue-border;
+  padding-bottom: var.$size-m;
+}
+
+.card__date {
+  font-size: var.$size-s;
+}
+
+.card__body {
+  margin-top: var.$size-m;
+
+  display: flex;
+  flex-direction: column;
+  gap: var.$size-xl;
+
+  flex: 1;
+}
+
+.card__level__wrapper,
+.card__skills__wrapper,
+.card__functions__wrapper {
+  display: flex;
+}
+
+.card__level__label,
+.card__skills__label,
+.card__functions__label {
+  font-size: var.$size-m;
+  flex: 1;
+}
+
+.card__level__value {
+  font-size: var.$size-m;
+  text-transform: uppercase;
+  flex: 3;
+}
+
+.card__skills__list,
+.card__functions__list {
+  flex: 3;
+  display: flex;
+  gap: var.$size-m;
+
+  flex-wrap: wrap;
+}
+
+.card__skill,
+.card__function {
+  display: flex;
+  gap: var.$size-s;
+
+  border-radius: 5px;
+  align-items: center;
+}
+
+.card__skill__icon,
+.card__function__icon {
+  color: color-mix(in srgb, var.$yelloworange 70%, transparent);
+}
+
+.card__skill__text,
+.card__function__text {
+  font-size: var.$size-m;
+}
+
+.card__footer {
+  margin-top: var.$size-s;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+
+  background-color: color-mix(in srgb, var.$yelloworange 50%, transparent);
+  color: color-mix(in srgb, var.$deepblue 70%, transparent);
+
+  transition: color 1s var.$ease, background-color 1s var.$ease;
+
+  &:hover {
+    background-color: var.$yelloworange;
+  }
+}
+
+.card__school__link {
+  font-size: var.$size-xl;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var.$deepblue;
+  font-weight: bold;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var.$size-s;
+  padding: var.$size-l;
+
+  & svg {
+    width: var.$size-xl;
+    height: var.$size-xl;
+  }
+}
+
+@include mixins.mobile {
+  .card {
+    width: 90vw;
+    height: 25vh;
+    padding: var.$size-l;
+  }
+
+  .card__title {
+    font-size: smaller;
+  }
+
+  .card__date {
+    font-size: var.$size-m;
+  }
+
+  .card__level__value {
+    font-size: var.$size-l;
+  }
+
+  .card__skill__text,
+  .card__function__text {
+    font-size: var.$size-l;
+  }
+
+  .card__footer {
+    background-color: var.$yelloworange;
+  }
+}

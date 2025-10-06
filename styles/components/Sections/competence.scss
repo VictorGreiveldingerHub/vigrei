@@ -1,0 +1,82 @@
+@use "../../base/base.scss" as var;
+@use "../../utils/mixins";
+
+.competences__wrapper {
+  height: 100%;
+}
+
+.competences__items {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+  width: 100%;
+}
+
+.competence__item {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  margin: auto;
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.competence__categorie {
+  position: absolute;
+  left: var.$size-m;
+
+  font-size: var.$size-m;
+}
+
+.competence__static__title,
+.competence__hovered__title {
+  text-transform: uppercase;
+  font-size: var.$size-l;
+}
+
+.hovered__competence {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: color-mix(in srgb, var.$deepblue 50%, transparent);
+  color: var.$paleyellow;
+
+  transform: translateY(-100%);
+  will-change: transform;
+
+  font-weight: bold;
+
+  pointer-events: none;
+}
+
+@include mixins.mobile {
+  .hovered__competence {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateY(0%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .competence__hovered__title {
+      display: none;
+    }
+  }
+}

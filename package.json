@@ -1,0 +1,48 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "quick start project",
+  "scripts": {
+    "backend:build": "node app.js",
+    "backend:development": "nodemon app.js",
+    "frontend:build": "webpack --progress --config webpack.config.build.js",
+    "frontend:development": "webpack serve --progress --config webpack.config.development.js",
+    "start": "concurrently --kill-others \"npm run backend:development\" \"npm run frontend:development\"",
+    "build": "npm run frontend:build",
+    "start:prod": "npm run frontend:build && npm run backend:build",
+    "serve:prod": "concurrently --kill-others \"npm run backend:build\" \"npm run frontend:build\""
+  },
+  "author": "Victor Greiveldinger",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^9.2.1",
+    "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^9.1.2",
+    "copy-webpack-plugin": "^12.0.2",
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "glslify-loader": "^2.0.0",
+    "gsap": "^3.13.0",
+    "image-minimizer-webpack-plugin": "^4.1.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "nodemon": "^3.1.10",
+    "postcss-loader": "^8.1.1",
+    "sass": "^1.83.4",
+    "sass-loader": "^16.0.4",
+    "sharp": "^0.33.5",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.11",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "webpack-merge": "^6.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "lenis": "^1.2.1",
+    "lodash": "^4.17.21",
+    "pug": "^3.0.3",
+    "three": "^0.178.0"
+  }
+}

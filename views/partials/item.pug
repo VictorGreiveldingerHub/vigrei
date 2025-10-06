@@ -1,0 +1,10 @@
+mixin Item(title, categorie, experience, isFirst = false)
+  -
+    const id = `title-${title.toLowerCase().replace(/\s+/g, '-')}`;
+    
+  li.competence__item(role="listitem")
+    article.hovered__competence(aria-labelledby=id)
+      h4.competence__categorie [#{categorie}]
+      p.competence__hovered__title(id=id) #{title}
+      
+    p.competence__static__title.glitched(data-text=title)

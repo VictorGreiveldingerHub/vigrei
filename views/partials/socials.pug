@@ -1,0 +1,15 @@
+include ./arrow
+
+mixin socialLink(label, href, aria)
+  a.social__link(
+    href=href,
+    target="_blank",
+    rel="noopener noreferrer",
+    aria-label=aria
+  )
+    .glitched(data-text=label)= label
+    span.link__arrow
+      svg.arrow(viewBox="0 0 10 11" aria-hidden="true")
+        use(xlink:href="#arrow")
+      svg.arrow__hover(viewBox="0 0 10 11" aria-hidden="true")
+        use(xlink:href="#arrow")

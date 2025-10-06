@@ -1,0 +1,26 @@
+include ../../partials/title
+include ../../partials/item
+
+section.competence(role="region" aria-labelledby="competences__title")
+  +titleBlock({ number: '04', title: 'Competences' })
+
+  h2.visually__hidden#competences__title Compétences
+
+  .competences__wrapper 
+    ul.competences__items(role="list")
+      +Item('Javascript', 'Langage', true)
+      +Item('C#', 'Langage')
+      +Item('PHP', 'Langage')
+      +Item('SQL', 'Langage')
+      +Item('Node', 'Librairie')
+      +Item('WebGL', 'API')
+      +Item('Three', 'Librairie')
+      +Item('GSAP', 'Librairie')
+      +Item('Next', 'Librairie')
+      +Item('React', 'Librairie')
+      +Item('Vue', 'Librairie')
+      +Item('Angular', 'Librairie')
+      +Item('Design', 'Intérêt')
+      +Item('Motion', 'Intérêt')
+      +Item('UX/UI', 'Intérêt')
+      +Item('Dessin', 'Intérêt')

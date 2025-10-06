@@ -1,0 +1,43 @@
+mixin Card(data, index)
+  article.card(role="group" aria-labelledby=`card__title__${data.number}`)
+    div(class=data.wrapperClass)
+
+      .card__header
+        p.card__number #{data.number}
+        h3.card__title.glitched(id=`card__title__${data.number}` data-text=data.title)= data.title
+        p.card__date #{data.date}
+
+      .card__body
+        if data.level && data.skills
+          .card__level__wrapper
+            p.card__level__label.glitched(data-text="Diplome :")
+            p.card__level__value.glitched(data-text=data.level)
+
+          .card__skills__wrapper
+            p.card__skills__label.glitched(data-text="Acquis :")
+            ul.card__skills__list
+              each skill in data.skills
+                li.card__skill
+                  span.card__skill__icon +
+                  span.card__skill__text #{skill}
+
+        else if data.functions
+          .card__functions__wrapper
+            p.card__functions__label.glitched(data-text="Fonctions :")
+            ul.card__functions__list
+              each func in data.functions
+                li.card__function
+                  span.card__function__icon +
+                  span.card__function__text #{func}
+
+      .card__footer
+        a.card__school__link(class=`card__school__link__${data.index}`, href=data.link, target="_blank", rel="noopener")
+          span.card__school__name #{data.school}
+          .arrow__svg__wrapper
+            - const colors = ['#5790db', '#3b72bd', '#1e58a0', '#003e83']
+
+            svg(viewBox="0 0 90 90" fill="none")
+              each color, i in colors
+                path(class=`card__arrow__bar__${i}`, d="M20 70L43.4725 46.5275L68 22", stroke=color, stroke-width="11", stroke-linejoin="miter")
+                path(class=`card__arrow__head__left__${i}`, d="M72 23H49.9945H27", stroke=color, stroke-width="11", stroke-linejoin="miter")
+                path(class=`card__arrow__head__right__${i}`, d="M67 18V40.0055V63", stroke=color, stroke-width="11", stroke-linejoin="miter")
