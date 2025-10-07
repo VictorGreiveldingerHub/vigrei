@@ -42,6 +42,7 @@ export default class Cards extends BaseElement {
   }
 
   pinCards(cardsWrapper) {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     const cards = this.animation.gsapArray(cardsWrapper);
 
     each(cards, (card, key) => {
@@ -50,9 +51,10 @@ export default class Cards extends BaseElement {
       this.scrollManager.createTriggerOnEnter({
         config: {
           trigger: card,
-          start: `top-=${40 + key * 10}% 10%`,
+          start: `top-=${20 + key * 20}% 20%`,
+
           endTrigger: cards[total - 1],
-          end: "bottom 70%",
+          end: isMobile ? "bottom 50%" : "bottom 70%",
           pin: true,
           pinSpacing: false,
           invalidateOnRefresh: true,
