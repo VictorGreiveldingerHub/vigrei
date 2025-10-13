@@ -2,10 +2,11 @@
 @use "../../utils/mixins";
 
 .contact__wrapper {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: var.$size-xl;
+
+  height: 100%;
   margin: 0 0 var.$size-l var.$size-m;
 }
 
@@ -24,9 +25,14 @@
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-  flex: 2;
+  flex: 1;
 
   gap: var.$size-m;
+}
+
+.download__text__wrapper {
+  flex: 1;
+  align-content: center;
 }
 
 .download {
@@ -75,15 +81,15 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-
-  gap: var.$size-xl;
+  justify-content: space-between;
 }
 
 .coordinates__column {
   display: flex;
   flex-direction: column;
-  width: fit-content;
   gap: var.$size-l;
+  flex: 1;
+  justify-content: end;
 }
 
 .coordinates__title {
