@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import BaseElement from "../../classes/BaseElement";
+import ScrollManager from "../../classes/ScrollManager.js";
 
 export default class Preloader extends BaseElement {
   constructor() {
@@ -23,6 +24,7 @@ export default class Preloader extends BaseElement {
       await this.animateProgressTo(5, "Fake progress", 0.5);
       await this.getAnimation();
 
+      this.scrollManager = new ScrollManager();
       // Chargement de main.js
       await this.animateProgressTo(30, "Fake progress", 0.5);
       await this.getMain();

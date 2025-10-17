@@ -1,7 +1,7 @@
 @use "../../base/base.scss" as var;
 @use "../../utils/mixins";
 
-.progress {
+.progress__wrapper {
   position: fixed;
   bottom: var.$size-l;
   right: var.$size-m;
@@ -11,7 +11,7 @@
 }
 
 @include mixins.mobile {
-  .progress {
+  .progress__wrapper {
     display: none;
   }
 }

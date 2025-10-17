@@ -40,8 +40,18 @@
   }
 }
 
+.progress__wrapper {
+  position: fixed;
+  bottom: var.$size-l;
+  right: var.$size-m;
+
+  font-size: var.$size-l;
+  font-weight: bold;
+}
+
 @include mixins.mobile {
-  .navigation {
+  .navigation,
+  .progress__wrapper {
     display: none;
   }
 }

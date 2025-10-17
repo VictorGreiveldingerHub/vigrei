@@ -48,7 +48,7 @@ export default class App {
       header: new Header(),
       cursor: new Cursor(),
       navigation: new Navigation(),
-      progress: new Progress(),
+      // progress: new Progress(),
       cards: new Cards(),
     };
   }

@@ -1,6 +1,6 @@
 import each from "lodash/each";
 
-import ScrollManager from "./ScrollManager";
+// import ScrollManager from "./ScrollManager";
 import Animation from "./Animation";
 
 export default class BaseElement {
@@ -11,7 +11,7 @@ export default class BaseElement {
 
     // Partage des classes entre enfants
     this.animation = new Animation();
-    this.scrollManager = new ScrollManager();
+    // this.scrollManager = new ScrollManager();
 
     this.initElement();
   }

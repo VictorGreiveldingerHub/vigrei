@@ -1,6 +1,8 @@
 import BaseElement from "../../classes/BaseElement";
 import each from "lodash/each";
 
+import ScrollManager from "../../classes/ScrollManager";
+
 export default class Navigation extends BaseElement {
   constructor() {
     super({
@@ -8,10 +10,14 @@ export default class Navigation extends BaseElement {
       elements: {
         items: [...document.querySelectorAll(".navigation__item")],
         sections: [...document.querySelectorAll("section")],
+        value: ".progress__value",
         glitched: ".glitched",
       },
       id: ".navigation",
     });
+    console.log(this.elements);
+
+    this.scrollManager = new ScrollManager();
 
     if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
 
@@ -20,6 +26,7 @@ export default class Navigation extends BaseElement {
     this.addClickListeners();
 
     window.addEventListener("scroll", () => {
+      this.updateScrollPercent();
       this.updateActiveSection();
     });
   }
@@ -68,5 +75,11 @@ export default class Navigation extends BaseElement {
     each(this.elements.glitched, (e) => {
       this.animation.animateGlitchText(e);
     });
+  }
+  updateScrollPercent() {
+    console.log(this.elements.value);
+    this.elements.value[0].textContent = `${Math.round(
+      this.scrollManager.lenis.progress * 100
+    )}%`;
   }
 }
