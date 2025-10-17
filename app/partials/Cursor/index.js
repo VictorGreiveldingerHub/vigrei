@@ -1,4 +1,5 @@
 import BaseElement from "../../classes/BaseElement";
+import gsap from "gsap";
 
 export default class Cursor extends BaseElement {
   constructor() {
@@ -53,7 +54,7 @@ export default class Cursor extends BaseElement {
 
     targets.forEach((el) => {
       el.addEventListener("mouseenter", () => {
-        this.animation.gsapTo(this.elements.cursor, {
+        gsap.to(this.elements.cursor, {
           scale: 0.05,
           duration: 0.3,
           ease: "power2.out",
@@ -61,7 +62,7 @@ export default class Cursor extends BaseElement {
       });
 
       el.addEventListener("mouseleave", () => {
-        this.animation.gsapTo(this.elements.cursor, {
+        gsap.to(this.elements.cursor, {
           scale: 1,
           duration: 0.3,
           ease: "power2.out",

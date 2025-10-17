@@ -1,67 +1,54 @@
 import gsap from "gsap";
 import each from "lodash/each";
-
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText);
-
-import ScrollManager from "./ScrollManager";
 import { createGlitchChar } from "../utils/createGlitchChar";
 
+gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, SplitText);
 export default class Animation {
-  constructor() {
-    this.scrollManager = new ScrollManager();
-  }
+  constructor() {}
+  /**
+   * Anime les flèches SVG au survol des liens
+   * Crée un effet de transition où la flèche principale sort en diagonale
+   * et une flèche secondaire entre pour la remplacer
+   *
+   * @param {NodeList|Array} linkContainers - Les conteneurs de liens avec flèches à animer
+   */
+  animateArrowOnHover(linkContainers) {
+    each(linkContainers, (container) => {
+      // Sélection des deux états de la flèche
+      const arrowDefault = container.querySelector(".arrow");
+      const arrowHover = container.querySelector(".arrow__hover");
 
-  gsapTo(element, config = {}) {
-    return gsap.to(element, { ...config });
-  }
+      // Timeline pour gérer l'animation au survol
+      const hoverTimeline = gsap.timeline({ paused: true });
 
-  gsapFrom(element, config = {}) {
-    return gsap.from(element, { ...config });
-  }
-
-  gsapTimeline(config = {}) {
-    const defaults = {
-      defaults: { ease: [0.77, 0, 0.175, 1], duration: 1 },
-      ...config,
-    };
-    return gsap.timeline(defaults);
-  }
-
-  gsapArray(element) {
-    return gsap.utils.toArray(element);
-  }
-
-  animateLinkArrowSVG(arrowContainer) {
-    each(arrowContainer, (el) => {
-      const primarySVG = el.querySelector(".arrow");
-      const secondarySVG = el.querySelector(".arrow__hover");
-
-      const linkArrowTL = this.gsapTimeline({ paused: true });
-
-      linkArrowTL.to(primarySVG, {
+      // Animation de sortie : la flèche par défaut se déplace et disparaît
+      hoverTimeline.to(arrowDefault, {
         x: 10,
         y: -10,
-        duration: 0.2,
         opacity: 0,
+        duration: 0.2,
       });
 
-      linkArrowTL.to(secondarySVG, {
+      // Animation d'entrée : la flèche de survol apparaît à sa place
+      hoverTimeline.to(arrowHover, {
         x: 0,
         y: 0,
-        duration: 0.2,
         opacity: 1,
+        duration: 0.2,
       });
 
-      el.addEventListener("mouseenter", () => {
-        linkArrowTL.play();
+      // Déclenche l'animation au survol
+      container.addEventListener("mouseenter", () => {
+        hoverTimeline.play();
       });
 
-      el.addEventListener("mouseleave", () => {
-        linkArrowTL.reverse();
+      // Inverse l'animation quand la souris quitte l'élément
+      container.addEventListener("mouseleave", () => {
+        hoverTimeline.reverse();
       });
     });
   }
@@ -74,7 +61,7 @@ export default class Animation {
   animateTextByWords(textDOMElement) {
     if (!textDOMElement) return;
 
-    this.scrollManager.createTriggerOnEnter({
+    ScrollTrigger.create({
       trigger: textDOMElement,
       start: "top bottom",
       onEnter: () => {
@@ -82,7 +69,7 @@ export default class Animation {
           type: "words",
           autoSplit: true,
           onSplit: (self) => {
-            this.gsapFrom(self.words, {
+            gsap.from(self.words, {
               yPercent: 100,
               autoAlpha: 0,
               ease: [0.77, 0, 0.175, 1],
@@ -105,7 +92,7 @@ export default class Animation {
       type: "chars",
       autoSplit: true,
       onSplit: (self) => {
-        this.gsapTo(self.chars, {
+        gsap.to(self.chars, {
           yPercent: 100,
           autoAlpha: 0,
           ease: [0.77, 0, 0.175, 1],
@@ -123,26 +110,24 @@ export default class Animation {
   animateTextByLines(textDOMElement) {
     if (!textDOMElement) return;
 
-    this.scrollManager.createTriggerOnEnter({
-      config: {
-        trigger: textDOMElement,
-        start: "top bottom",
-        once: true,
+    ScrollTrigger.create({
+      trigger: textDOMElement,
+      start: "top bottom",
+      once: true,
 
-        onEnter: () => {
-          SplitText.create(textDOMElement, {
-            type: "lines",
-            autoSplit: true,
-            onSplit: (self) => {
-              this.gsapFrom(self.lines, {
-                yPercent: 100,
-                autoAlpha: 0,
-                ease: [0.77, 0, 0.175, 1],
-                stagger: 0.05,
-              });
-            },
-          });
-        },
+      onEnter: () => {
+        SplitText.create(textDOMElement, {
+          type: "lines",
+          autoSplit: true,
+          onSplit: (self) => {
+            gsap.from(self.lines, {
+              yPercent: 100,
+              autoAlpha: 0,
+              ease: [0.77, 0, 0.175, 1],
+              stagger: 0.05,
+            });
+          },
+        });
       },
     });
   }
@@ -154,58 +139,57 @@ export default class Animation {
   animateGlitchText(element) {
     gsap.set(element, { opacity: 1 });
 
-    this.scrollManager.createTriggerOnEnter({
-      config: {
-        trigger: element,
-        start: "top bottom",
-        once: true,
-        onEnter: () => {
-          const text = element.dataset.text;
-          const chars = text.split("");
-          const fakeChars =
-            ".-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@".split(
-              ""
-            );
+    ScrollTrigger.create({
+      trigger: element,
+      start: "top bottom",
+      once: true,
+      onEnter: () => {
+        const text = element.dataset.text;
+        const chars = text.split("");
+        const fakeChars =
+          ".-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@".split(
+            ""
+          );
 
-          const fragment = document.createDocumentFragment(); // Fragment pour éviter les reflows
+        const fragment = document.createDocumentFragment(); // Fragment pour éviter les reflows
 
-          element.innerHTML = ""; // Vider le contenu de l'élément
+        element.innerHTML = ""; // Vider le contenu de l'élément
 
-          each(chars, (char, i) => {
-            const { charWrapper, fakeChar, real } = createGlitchChar(
-              char,
-              fakeChars
-            );
+        each(chars, (char, i) => {
+          const { charWrapper, fakeChar, real } = createGlitchChar(
+            char,
+            fakeChars
+          );
 
-            fragment.appendChild(charWrapper);
+          fragment.appendChild(charWrapper);
 
-            // Animation timeline
-            this.gsapTimeline({ delay: i * 0.03 })
-              .set(charWrapper, { visibility: "visible" })
-              .to(fakeChar, {
-                opacity: 1,
-                stagger: 0.1,
-                duration: 0.1,
-                ease: [0.77, 0, 0.175, 1],
-              })
-              .to(fakeChar, {
-                scaleX: 0,
-                stagger: 0.1,
-                duration: 0.1,
-                transformOrigin: "center left",
-                ease: [0.77, 0, 0.175, 1],
-              })
-              .to(real, {
-                opacity: 1,
-                stagger: 0.1,
-                duration: 0.1,
-                ease: [0.77, 0, 0.175, 1],
-              });
-          });
+          // Animation timeline
+          gsap
+            .timeline({ delay: i * 0.03 })
+            .set(charWrapper, { visibility: "visible" })
+            .to(fakeChar, {
+              opacity: 1,
+              stagger: 0.1,
+              duration: 0.1,
+              ease: [0.77, 0, 0.175, 1],
+            })
+            .to(fakeChar, {
+              scaleX: 0,
+              stagger: 0.1,
+              duration: 0.1,
+              transformOrigin: "center left",
+              ease: [0.77, 0, 0.175, 1],
+            })
+            .to(real, {
+              opacity: 1,
+              stagger: 0.1,
+              duration: 0.1,
+              ease: [0.77, 0, 0.175, 1],
+            });
+        });
 
-          // Une fois tous les éléments créés, les ajouter tous d'un coup à l'élément DOM
-          element.appendChild(fragment);
-        },
+        // Une fois tous les éléments créés, les ajouter tous d'un coup à l'élément DOM
+        element.appendChild(fragment);
       },
     });
   }
@@ -254,7 +238,7 @@ export default class Animation {
       const svgElements = allSVG[`card__${index}`]; // Récupère les éléments SVG de la carte actuelle
 
       // Crée une timeline GSAP
-      const tl = this.gsapTimeline({ paused: true });
+      const tl = gsap.timeline({ paused: true });
       const delayIncrement = 0.1;
 
       for (let i = 0; i <= 3; i++) {
@@ -317,7 +301,7 @@ export default class Animation {
     const staticTitle = element.querySelector(".competence__static__title");
     const directionY = this.getMouthDirection(e, element);
 
-    const hoverTimeline = this.gsapTimeline();
+    const hoverTimeline = gsap.timeline();
 
     if (state === "hover") {
       hoverTimeline

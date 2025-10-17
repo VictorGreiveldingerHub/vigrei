@@ -32,20 +32,4 @@ export default class ScrollManager {
   disable() {
     this.lenis.stop();
   }
-
-  /**
-   * Crée un ScrollTrigger qui exécute une fonction lors de l'entrée de l'élément à l'écran.
-   *
-   * @param {Object} config - Configuration de l'animation.
-   * @param {Element} config.trigger - Élément DOM qui déclenche le ScrollTrigger.
-   * @param {string} [config.start="top bottom"] - Position de déclenchement du scroll.
-   * @param {boolean} [config.once=true] - Si true, le déclenchement ne se produit qu'une seule fois.
-   * @param {Function} config.onEnter - Fonction appelée lors de l'entrée dans la zone visible.
-   * @returns {ScrollTrigger} - L'instance ScrollTrigger créée.
-   */
-  createTriggerOnEnter({ config = {} }) {
-    return ScrollTrigger.create({
-      ...config,
-    });
-  }
 }

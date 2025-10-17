@@ -1,6 +1,6 @@
 import each from "lodash/each";
 import BaseElement from "../../classes/BaseElement";
-
+import gsap from "gsap";
 export default class Contact extends BaseElement {
   constructor() {
     super({
@@ -19,7 +19,7 @@ export default class Contact extends BaseElement {
 
     this.setupCVDownload();
 
-    this.animation.animateLinkArrowSVG(this.elements.socials);
+    this.animation.animateArrowOnHover(this.elements.socials);
 
     this.setupDownloadButtonAnimations();
 
@@ -103,7 +103,7 @@ export default class Contact extends BaseElement {
 
   setupDownloadButtonAnimations() {
     const items = this.createItems();
-    const tl = this.animation.gsapTimeline({ paused: true });
+    const tl = gsap.timeline({ paused: true });
     const ease = [0.77, 0, 0.175, 1];
     const isMobile = window.innerWidth <= 621; // Détection mobile (ajustez la valeur selon vos besoins)
 

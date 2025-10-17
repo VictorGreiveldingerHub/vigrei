@@ -1,3 +1,4 @@
+import gsap from "gsap";
 import BaseElement from "../../classes/BaseElement";
 
 export default class Preloader extends BaseElement {
@@ -45,19 +46,12 @@ export default class Preloader extends BaseElement {
       const line = this.elements.line[0];
       const clampedProgress = Math.max(0, Math.min(100, progress));
 
-      if (this.animation && this.animation.gsapTo) {
-        this.animation.gsapTo(line, {
-          scaleX: clampedProgress / 100,
-          duration,
-          ease: [0.77, 0, 0.175, 1],
-          onComplete: resolve,
-        });
-      } else {
-        line.style.transform = `translate(-50%, -50%) scaleX(${
-          clampedProgress / 100
-        })`;
-        resolve();
-      }
+      gsap.to(line, {
+        scaleX: clampedProgress / 100,
+        duration,
+        ease: [0.77, 0, 0.175, 1],
+        onComplete: resolve,
+      });
     });
   }
 
@@ -78,7 +72,6 @@ export default class Preloader extends BaseElement {
       console.error("❌ Erreur chargement Animation:", error);
       await this.animateProgressTo(25, "Animation en mode dégradé");
 
-      this.animation = null;
       return null;
     }
   }
@@ -146,7 +139,7 @@ export default class Preloader extends BaseElement {
     return new Promise((resolve) => {
       if (!this.elements.line[0]) resolve();
 
-      this.animation.gsapTo(this.elements.line[0], {
+      gsap.to(this.elements.line[0], {
         duration: 1,
         transform: `translate(-50%, -50%) scaleX(0)`,
         transformOrigin: "right",
@@ -183,30 +176,25 @@ export default class Preloader extends BaseElement {
             height: "60vh",
           };
 
-      if (this.animation.gsapTo) {
-        this.animation.gsapTo(this.element, {
-          ...targetStyles,
-          duration: 1,
-          ease: [0.77, 0, 0.175, 1],
-          onComplete: () => {
-            this.animation.gsapTo(this.element, {
-              opacity: 0,
-              ease: [0.77, 0, 0.175, 1],
-              onComplete: () => {
-                this.element.style.display = "none";
-                this.app.animateElements();
-                if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
-                  return;
+      gsap.to(this.element, {
+        ...targetStyles,
+        duration: 1,
+        ease: [0.77, 0, 0.175, 1],
+        onComplete: () => {
+          gsap.to(this.element, {
+            opacity: 0,
+            ease: [0.77, 0, 0.175, 1],
+            onComplete: () => {
+              this.element.style.display = "none";
+              this.app.animateElements();
+              if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) return;
 
-                this.scrollManager.enable();
-                resolve();
-              },
-            });
-          },
-        });
-      } else {
-        this.fallbackClose();
-      }
+              this.scrollManager.enable();
+              resolve();
+            },
+          });
+        },
+      });
     });
   }
 

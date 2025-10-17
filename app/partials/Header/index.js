@@ -12,7 +12,7 @@ export default class Header extends BaseElement {
       id: "header",
     });
 
-    this.animation.animateLinkArrowSVG(this.elements.socials);
+    this.animation.animateArrowOnHover(this.elements.socials);
   }
 
   animateIn() {

@@ -1,7 +1,10 @@
 import each from "lodash/each";
+import gsap from "gsap";
 
 import BaseElement from "../../classes/BaseElement";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 export default class Cards extends BaseElement {
   constructor() {
     super({
@@ -18,12 +21,12 @@ export default class Cards extends BaseElement {
   }
 
   scaleCards(cardsWrapper) {
-    const cards = this.animation.gsapArray(cardsWrapper);
+    const cards = gsap.utils.toArray(cardsWrapper);
 
     each(cards, (card, key) => {
       const total = cards.length;
 
-      const scaleCardTimeline = this.animation.gsapTimeline({
+      const scaleCardTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: card,
           start: "top bottom-=100",
@@ -42,23 +45,22 @@ export default class Cards extends BaseElement {
   }
 
   pinCards(cardsWrapper) {
+    // Voir ça pour gérer niveau BaseElement
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const cards = this.animation.gsapArray(cardsWrapper);
+    const cards = gsap.utils.toArray(cardsWrapper);
 
     each(cards, (card, key) => {
       const total = cards.length;
 
-      this.scrollManager.createTriggerOnEnter({
-        config: {
-          trigger: card,
-          start: `top-=${20 + key * 20}% 20%`,
+      ScrollTrigger.create({
+        trigger: card,
+        start: `top-=${20 + key * 20}% 10%`,
 
-          endTrigger: cards[total - 1],
-          end: isMobile ? "bottom 50%" : "bottom 70%",
-          pin: true,
-          pinSpacing: false,
-          invalidateOnRefresh: true,
-        },
+        endTrigger: cards[total - 1],
+        end: isMobile ? "bottom 50%" : "bottom 70%",
+        pin: true,
+        pinSpacing: false,
+        invalidateOnRefresh: true,
       });
     });
   }
